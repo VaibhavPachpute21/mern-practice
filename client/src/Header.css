@@ -1,0 +1,36 @@
+.Header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: aquamarine;
+}
+
+.Header .logo{
+    float: left;
+}
+
+.Header .header-right{
+    display: flex;
+    float: right;
+}
+
+.Header .header-right Link{
+    text-decoration: none;
+}
+
+.Header .header-right p{
+    font-size: 18px;
+    border:1px solid grey;
+    text-decoration: none;
+    color: black;
+    margin: 10px;
+    background-color: blue;
+    font-weight: 600;
+}
+
+
+.Header .header-right p.active{
+    background-color: coral;
+    color: white;
+}
