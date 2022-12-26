@@ -14,10 +14,10 @@ app.use(cors());
 app.use("/", userRoutes)
 
 app.get("/", (req, res) => res.send("server is running"))
-app.all("*",(req,res)=>res.send("Route does not exist!"))
+app.all("*", (req, res) => res.send("Route does not exist!"))
 
 
-app.listen(port, () => console.log(`Server is listening on port: http://localhost:${port}`));
+app.listen(port, () => console.log(`Server is running`));
 
 
 

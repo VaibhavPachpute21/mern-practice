@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import '../../App.css'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 
 const Home = () => {
@@ -9,20 +10,27 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // console.log(`${process.env.SERVER_URL}`)
     getData();
   }, [data])
 
   const getData = async () => {
-    const res = await axios.get("http://localhost:5000/users");
-    if (res.status === 200) {
-      setData(res.data);
+    try {
+      const res = await axios.get(`https://first-api-zvey.onrender.com/users`);
+      if (res.status === 200) {
+        setData(res.data);
+      }
+    } catch (error) {
+      toast.error("Some thing went wrong")
+
     }
+
   }
 
 
 
   const deleteUser = async (id) => {
-    const res = await axios.delete(`http://localhost:5000/user/${id}`);
+    const res = await axios.delete(`https://first-api-zvey.onrender.com/user/${id}`);
     console.log(res.data)
   }
 
@@ -48,7 +56,7 @@ const Home = () => {
               <td>{user.name}</td>
               <td>{user.email}</td>
               <td>{user.contact}</td>
-              <td><button onClick={((e) => { navigate(`/update/${user.id}`,{state:{userData:user}}) })}>View</button></td>
+              <td><button onClick={((e) => { navigate(`/update/${user.id}`, { state: { userData: user } }) })}>View</button></td>
               <td><button onClick={((e) => { deleteUser(user.id) })}>Delete</button></td>
             </tr>;
           })}
