@@ -15,7 +15,9 @@ app.use("/", userRoutes)
 
 app.get("/", (req, res) => res.send("server is running"))
 app.all("*", (req, res) => res.send("Route does not exist!"))
+app.use(express.static('client/build'));
 
+app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
 
 app.listen(port, () => console.log(`Server is running`));
 
